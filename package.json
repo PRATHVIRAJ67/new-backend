@@ -1,9 +1,9 @@
 {
   "name": "new-backend",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "echo \"No local server defined\""
   },
   "dependencies": {
     "cors": "^2.8.5",
