@@ -12,12 +12,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Log Environment Variables for Debugging
-console.log('MONGO_URI:', process.env.MONGO_URI);
-
 // Mongoose Connection
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(() => console.log('MongoDB Atlas connected'))
   .catch((err) => {
     console.error('MongoDB Connection Error:', err.message);
@@ -83,6 +83,11 @@ app.delete('/contacts/:id', async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
+});
+
+// Optional: Root route for testing
+app.get('/', (req, res) => {
+  res.send('API is running');
 });
 
 module.exports = app;
